@@ -1,0 +1,344 @@
+:root {
+    --gh-black: #1b1f23;
+    --accent: #2ea44f;
+    --accent-hover: #2c974b;
+    --glass: rgba(255, 255, 255, 0.8);
+}
+
+body {
+    background: radial-gradient(circle at top right, #e2e8f0, #cbd5e1);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.search-card {
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 2.5rem;
+    border-radius: 2rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+.github-icon {
+    margin-bottom: 1.5rem;
+    color: var(--gh-black);
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+input[type="search"] {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    border: 2px solid #e2e8f0;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.2s ease;
+    background: white;
+}
+
+input[type="search"]:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.search-btn {
+    background: var(--gh-black);
+    color: white;
+    padding: 1rem;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.search-btn:hover {
+    background: #333;
+    transform: translateY(-1px);
+}
+
+/* Loading Spinner */
+.loader {
+    display: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ffffff33;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    position: absolute;
+    right: 20px;
+    top: calc(50% - 10px);
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Existing CSSni davom ettirish */
+
+.result-area {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    display: none; 
+    /* Default holatda yashirin bo'ladi, JS orqali ko'rsatiladi */
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.profile-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    padding: 24px;
+    text-align: left;
+    transition: transform 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid var(--accent);
+    box-shadow: 0 0 0 4px rgba(46, 164, 79, 0.2);
+    object-fit: cover;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.username {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--gh-black);
+    margin-bottom: 4px;
+}
+
+.github-link {
+    color: #0366d6;
+    font-size: 16px;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.github-link:hover {
+    color: #005cc5;
+    text-decoration: underline;
+}
+
+.bio {
+    font-size: 15px;
+    color: #586069;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    background-color: #f6f8fa;
+    border-radius: 10px;
+    padding: 15px 0;
+    margin-bottom: 20px;
+    border: 1px solid #e1e4e8;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gh-black);
+}
+
+.stat-label {
+    display: block;
+    font-size: 13px;
+    color: #586069;
+}
+
+.profile-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-between;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    color: #586069;
+    flex-basis: calc(50% - 10px); /* 2 tadan yonma-yon */
+}
+
+.detail-item svg {
+    color: #586069;
+}
+
+.detail-item a {
+    color: #0366d6;
+    text-decoration: none;
+}
+
+.detail-item a:hover {
+    text-decoration: underline;
+}
+
+/* Responsiveness for smaller screens */
+@media (max-width: 480px) {
+    .profile-card {
+        padding: 20px;
+    }
+    .profile-avatar {
+        width: 70px;
+        height: 70px;
+    }
+    .username {
+        font-size: 20px;
+    }
+    .github-link {
+        font-size: 14px;
+    }
+    .stats {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 0;
+    }
+    .detail-item {
+        flex-basis: 100%; /* Mobil versiyada har bir element alohida qatorda */
+    }
+}
+
+/* Old CSS continues here */
+
+.not-found-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    margin-top: 2rem;
+    text-align: center;
+    border: 1px solid #ffecec; /* Yumshoq qizil rangli chegara */
+    display: none; /* Default holatda yashirin, JS orqali ko'rsatiladi */
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.error-icon {
+    color: #ef4444; /* Qizil rang */
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.error-icon svg {
+    width: 60px;
+    height: 60px;
+}
+
+.not-found-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #ef4444; /* Qizil sarlavha */
+    margin-bottom: 15px;
+}
+
+.not-found-message {
+    font-size: 16px;
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.try-again-btn {
+    background-color: #fca5a5; /* Yumshoq qizil rang */
+    color: #ef4444;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.try-again-btn:hover {
+    background-color: #f87171; /* To'qroq qizil */
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);
+}
+
+.try-again-btn svg {
+    stroke: #ef4444; /* Ikonka rangini tugma rangiga moslash */
+    transition: stroke 0.3s ease;
+}
+
+.try-again-btn:hover svg {
+    stroke: white;
+}
+
+/* Responsiveness for smaller screens */
+@media (max-width: 480px) {
+    .not-found-card {
+        padding: 25px;
+    }
+    .not-found-title {
+        font-size: 22px;
+    }
+    .not-found-message {
+        font-size: 14px;
+    }
+    .try-again-btn {
+        padding: 10px 20px;
+        font-size: 15px;
+    }
+}
